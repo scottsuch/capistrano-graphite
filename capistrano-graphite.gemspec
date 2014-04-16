@@ -8,8 +8,10 @@ Gem::Specification.new do |spec|
   spec.version       = Capistrano::Graphite::VERSION
   spec.authors       = ["scottsuch"]
   spec.email         = ["sgorsuch@gmail.com"]
-  spec.summary       = %q{TODO: Write a short summary. Required.}
-  spec.description   = %q{TODO: Write a longer description. Optional.}
+  spec.summary       = %q{Send deploy events to graphite via capistrano}
+  spec.description   = %q{This gem plugs into the deploy task in capistrano to
+                          help provide visibility to when deployments were
+                          deploy.}
   spec.homepage      = ""
   spec.license       = "MIT"
 

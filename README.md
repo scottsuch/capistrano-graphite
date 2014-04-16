@@ -1,6 +1,9 @@
 # Capistrano::Graphite
 
-TODO: Write a gem description
+This gem extends capistrano's deploy functionality by pushing events to graphite
+Some information on events can be found in [this nice writeup](http://obfuscurity.com/2014/01/Graphite-Tip-A-Better-Way-to-Store-Events).
+This gem works with capistrano v3.1.0 and above.
+For a gem that works with older versions of capistrano go [here](https://github.com/hellvinz/graphite-notify).
 
 ## Installation
 
@@ -18,7 +21,13 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+Require in ```Capfile``` to use the default task:
+
+    require "capistrano/graphite"
+
+Configurable options:
+
+    set :graphite_url, "http://your/graphite/event/url"
 
 ## Contributing
 
