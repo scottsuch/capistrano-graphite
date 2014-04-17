@@ -5,7 +5,7 @@
 [![Code Climate](http://img.shields.io/codeclimate/github/scottsuch/capistrano-graphite.svg)][codeclimate]
 
 [gem]: https://rubygems.org/gems/capistrano-graphite
-[gemnasium]: https://gemnasium.com/cottsuch/capistrano-graphite
+[gemnasium]: https://gemnasium.com/scottsuch/capistrano-graphite
 [travis]: http://travis-ci.org/scottsuch/capistrano-graphite
 [codeclimate]: https://codeclimate.com/github/scottsuch/capistrano-graphite
 This gem extends [Capistrano's](https://github.com/capistrano/capistrano) deploy functionality by pushing events to graphite.
