@@ -1,5 +1,5 @@
 # Capistrano::Graphite
-
+[![Code Climate](https://codeclimate.com/github/scottsuch/capistrano-graphite.png)](https://codeclimate.com/github/scottsuch/capistrano-graphite)
 This gem extends capistrano's deploy functionality by pushing events to graphite
 Some information on events can be found in [this nice writeup](http://obfuscurity.com/2014/01/Graphite-Tip-A-Better-Way-to-Store-Events).
 This gem works with capistrano v3.1.0 and above.
