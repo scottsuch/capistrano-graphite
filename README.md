@@ -27,7 +27,7 @@ Require in ```Capfile``` to use the default task:
 
 Configurable options:
 
-    set :graphite_url, "http://your/graphite/event/url"
+    set :graphite_url, "http://example.com:8000/events/"
 
 ## Contributing
 

@@ -12,7 +12,7 @@ Gem::Specification.new do |spec|
   spec.description   = %q{This gem plugs into the deploy task in capistrano to
                           help provide visibility to when deployments were
                           deploy.}
-  spec.homepage      = ""
+  spec.homepage      = "https://github.com/scottsuch/capistrano-graphite"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files -z`.split("\x0")
@@ -21,5 +21,5 @@ Gem::Specification.new do |spec|
   spec.require_paths = ["lib"]
 
   spec.add_development_dependency "bundler", "~> 1.6"
-  spec.add_development_dependency "rake"
+  spec.add_development_dependency "rake", "~> 10.3"
 end
