@@ -1,5 +1,7 @@
 # Capistrano::Graphite
 [![Code Climate](http://img.shields.io/codeclimate/github/scottsuch/capistrano-graphite.svg)][codeclimate]
+
+[codeclimate]: https://codeclimate.com/githubsethvargo/chef-sugar
 This gem extends capistrano's deploy functionality by pushing events to graphite
 Some information on events can be found in [this nice writeup](http://obfuscurity.com/2014/01/Graphite-Tip-A-Better-Way-to-Store-Events).
 This gem works with capistrano v3.1.0 and above.
