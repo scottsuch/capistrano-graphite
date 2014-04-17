@@ -38,6 +38,11 @@ Configurable options
 
     set :graphite_url, "http://example.com:8000/events/"
 
+or without the port designation
+
+    set :graphite_url, "http://example.com/events/"
+    
+
 ## Contributing
 
 1. Fork it
