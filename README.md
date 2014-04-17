@@ -1,8 +1,10 @@
 # Capistrano::Graphite
 [![Gem Version](http://img.shields.io/gem/v/capistrano-graphite.svg)][gem]
+[![Build Status](http://img.shields.io/travis/scottsuch/capistrano-graphite.svg)][travis]
 [![Code Climate](http://img.shields.io/codeclimate/github/scottsuch/capistrano-graphite.svg)][codeclimate]
 
 [gem]: https://rubygems.org/gems/capistrano-graphite
+[travis]: http://travis-ci.org/scottsuch/capistrano-graphite
 [codeclimate]: https://codeclimate.com/githubscottsuch/capistrano-graphite
 This gem extends capistrano's deploy functionality by pushing events to graphite.
 Currently events are only pushed after ```deploy:updated``` and ```deploy:reverted```.
