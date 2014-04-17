@@ -10,7 +10,7 @@ This gem extends [Capistrano's](https://github.com/capistrano/capistrano) deploy
 Currently events are only pushed after ```deploy:updated``` and ```deploy:reverted```.
 Some information on events can be found in [this nice writeup](http://obfuscurity.com/2014/01/Graphite-Tip-A-Better-Way-to-Store-Events).
 This gem works with Capistrano v3.1.0 and above.
-For a gem that works with older versions of capistrano look [here](https://github.com/hellvinz/graphite-notify).
+For a gem that works with older versions of Capistrano look [here](https://github.com/hellvinz/graphite-notify).
 
 ## Installation
 
