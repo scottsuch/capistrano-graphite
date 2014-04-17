@@ -5,7 +5,7 @@
 
 [gem]: https://rubygems.org/gems/capistrano-graphite
 [travis]: http://travis-ci.org/scottsuch/capistrano-graphite
-[codeclimate]: https://codeclimate.com/githubscottsuch/capistrano-graphite
+[codeclimate]: https://codeclimate.com/github/scottsuch/capistrano-graphite
 This gem extends [Capistrano's](https://github.com/capistrano/capistrano) deploy functionality by pushing events to graphite.
 Currently events are only pushed after ```deploy:updated``` and ```deploy:reverted```.
 Some information on events can be found in [this nice writeup](http://obfuscurity.com/2014/01/Graphite-Tip-A-Better-Way-to-Store-Events).
