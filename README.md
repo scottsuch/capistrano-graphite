@@ -8,7 +8,7 @@
 [gemnasium]: https://gemnasium.com/scottsuch/capistrano-graphite
 [travis]: http://travis-ci.org/scottsuch/capistrano-graphite
 [codeclimate]: https://codeclimate.com/github/scottsuch/capistrano-graphite
-This gem works with Capistrano v3.1.0 and above and was based off the work on [this gem](For a gem that works with older versions of Capistrano look [here](https://github.com/hellvinz/graphite-notify) which works with Capistrano v2.x.
+This gem works with Capistrano v3.1.0 and above and was based off the work on [this gem](https://github.com/hellvinz/graphite-notify) which works with Capistrano v2.x.
 
 Adding this gem to [Capistrano](https://github.com/capistrano/capistrano) deploy extends functionality by pushing events to graphite.
 Currently events are only pushed after ```deploy:updated``` and ```deploy:reverted```.
