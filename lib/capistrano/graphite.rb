@@ -26,7 +26,12 @@ namespace :deploy do
     GraphiteInterface.post_event(action)
   end
 
-  # Set the order for these tasks
-  after 'deploy:updated', 'deploy:graphite_deploy'
-  after 'deploy:reverted', 'deploy:graphite_rollback'
+  # Check the graphite_enable_events option
+  if "#{fetch(:graphite_enable_events)}".to_i == 0
+    puts "No events will be sent to graphite."
+  else
+    # Set the order for these tasks
+    after 'deploy:updated', 'deploy:graphite_deploy'
+    after 'deploy:reverted', 'deploy:graphite_rollback'
+  end
 end
