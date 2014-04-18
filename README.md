@@ -8,15 +8,19 @@
 [gemnasium]: https://gemnasium.com/scottsuch/capistrano-graphite
 [travis]: http://travis-ci.org/scottsuch/capistrano-graphite
 [codeclimate]: https://codeclimate.com/github/scottsuch/capistrano-graphite
-This gem extends [Capistrano's](https://github.com/capistrano/capistrano) deploy functionality by pushing events to graphite.
+This gem works with Capistrano v3.1.0 and above and was based off the work on [this gem](For a gem that works with older versions of Capistrano look [here](https://github.com/hellvinz/graphite-notify) which works with Capistrano v2.x.
+
+Adding this gem to [Capistrano](https://github.com/capistrano/capistrano) deploy extends functionality by pushing events to graphite.
 Currently events are only pushed after ```deploy:updated``` and ```deploy:reverted```.
-Some information on events can be found in [this nice writeup](http://obfuscurity.com/2014/01/Graphite-Tip-A-Better-Way-to-Store-Events).
-This gem works with Capistrano v3.1.0 and above.
-For a gem that works with older versions of Capistrano look [here](https://github.com/hellvinz/graphite-notify).
+
+Some information on events can be found in [this article](http://obfuscurity.com/2014/01/Graphite-Tip-A-Better-Way-to-Store-Events).
 
 ## Installation
+Install it manually:
 
-Add this line to your application's Gemfile:
+    $ gem install capistrano-graphite
+
+Otherwise, add this line to your application's Gemfile:
 
     gem 'capistrano-graphite'
 
@@ -24,24 +28,25 @@ And then execute:
 
     $ bundle
 
-Or install it yourself as:
-
-    $ gem install capistrano-graphite
-
 ## Usage
-
-Require in ```Capfile``` to use the default tasks:
+### Setup your application
+Add the following line to your ```Capfile```.
 
     require "capistrano/graphite"
 
-Configurable options
+### Configurable options
+Path to your graphite instance
 
-    set :graphite_url, "http://example.com:8000/events/"
+    set :graphite_url, "http://example.com:8000/events/"  # The port distinction is optional
 
-or without the port designation
+Disable sending events for a particular stage by setting the following to 0
 
-    set :graphite_url, "http://example.com/events/"
-    
+    set :graphite_enable_events, 0                        # This is set to 1 by default
+
+### Test that it's working
+You can run the following on it's own assuming you have configured the graphite url
+
+    $ bundle exec cap <stage> deploy:graphite_deploy
 
 ## Contributing
 
