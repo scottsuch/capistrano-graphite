@@ -16,22 +16,21 @@ end
 namespace :deploy do
   desc 'notify graphite that a deployment occured'
   task :graphite_deploy do
-    action = "deploy"
-    GraphiteInterface.post_event(action)
+    if fetch(:graphite_enable_events).to_i == 1
+      action = "deploy"
+      GraphiteInterface.post_event(action)
+    end
   end
 
   desc 'notify graphite that a rollback occured'
   task :graphite_rollback do
-    action = "rollback"
-    GraphiteInterface.post_event(action)
+    if fetch(:graphite_enable_events).to_i == 1
+      action = "rollback"
+      GraphiteInterface.post_event(action)
+    end
   end
 
-  # Check the graphite_enable_events option
-  if "#{fetch(:graphite_enable_events)}".to_i == 0
-    puts "No events will be sent to graphite."
-  else
-    # Set the order for these tasks
-    after 'deploy:updated', 'deploy:graphite_deploy'
-    after 'deploy:reverted', 'deploy:graphite_rollback'
-  end
+  # Set the order for these tasks
+  after 'deploy:updated', 'deploy:graphite_deploy'
+  after 'deploy:reverted', 'deploy:graphite_rollback'
 end
