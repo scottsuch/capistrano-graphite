@@ -5,6 +5,19 @@ require 'uri'
 set :local_user, ENV['USER']
 
 class GraphiteInterface
+  def self.events_enabled
+    if fetch(:graphite_enable_events).to_i == 1
+      return 1
+    elsif fetch(:graphite_enable_events).to_i == 0
+      puts "Not sending an event: graphite_enable_events was set to 0."
+      return 0
+    else
+      warn "Not sending an event: graphite_enable_events was assigned an "\
+            "invalid value."
+      return
+    end
+  end
+
   def self.post_event(action)
     uri = URI::parse("#{fetch(:graphite_url)}")
     Net::HTTP.start(uri.host, uri.port)  do |http|
@@ -13,10 +26,11 @@ class GraphiteInterface
   end
 end
 
+
 namespace :deploy do
   desc 'notify graphite that a deployment occured'
   task :graphite_deploy do
-    if fetch(:graphite_enable_events).to_i == 1
+    if GraphiteInterface.events_enabled == 1
       action = "deploy"
       GraphiteInterface.post_event(action)
     end
@@ -24,7 +38,7 @@ namespace :deploy do
 
   desc 'notify graphite that a rollback occured'
   task :graphite_rollback do
-    if fetch(:graphite_enable_events).to_i == 1
+    if GraphiteIntervace.events_enabled == 1
       action = "rollback"
       GraphiteInterface.post_event(action)
     end
@@ -33,4 +47,10 @@ namespace :deploy do
   # Set the order for these tasks
   after 'deploy:updated', 'deploy:graphite_deploy'
   after 'deploy:reverted', 'deploy:graphite_rollback'
+end
+
+namespace :load do
+  task :defaults do
+    set :graphite_enable_events, 1
+  end
 end
