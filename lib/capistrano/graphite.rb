@@ -14,7 +14,7 @@ class GraphiteInterface
     else
       warn "Not sending an event: graphite_enable_events was assigned an "\
             "invalid value."
-      return
+      return 0
     end
   end
 
