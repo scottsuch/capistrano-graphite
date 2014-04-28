@@ -11,8 +11,8 @@ Gem::Specification.new do |spec|
   spec.summary       = %q{A gem for pushing graphite events via capistrano v3
                           deployment}
   spec.description   = %q{This gem plugs into the deploy task in capistrano to
-                          help provide visibility to when deployments were
-                          deployed.}
+                          help provide visibility into when deployments and
+                          rollbacks occured.}
   spec.homepage      = "https://github.com/scottsuch/capistrano-graphite"
   spec.license       = "MIT"
 
