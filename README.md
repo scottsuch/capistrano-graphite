@@ -35,13 +35,13 @@ Add the following line to your ```Capfile```.
     require "capistrano/graphite"
 
 ### Configurable options
-Path to your graphite instance
+Path to your graphite instance. Port and user:password are optional.
 
-    set :graphite_url, "http://example.com:8000/events/"  # The port distinction is optional
+    set: :graphite_url, "http://user:password@example.com:8000/events/"
 
 Disable sending events for a particular stage by setting the following to 0
 
-    set :graphite_enable_events, 0                        # This is set to 1 by default
+    set :graphite_enable_events, 0      # This is set to 1 by default
 
 ### Test that it's working
 You can run the following on it's own assuming you have configured the graphite url
