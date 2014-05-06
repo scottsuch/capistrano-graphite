@@ -20,8 +20,12 @@ class GraphiteInterface
 
   def self.post_event(action)
     uri = URI::parse("#{fetch(:graphite_url)}")
-    Net::HTTP.start(uri.host, uri.port)  do |http|
-      http.post(uri.path, "{\"what\": \"#{action} #{fetch(:application)} in #{fetch(:stage)}\", \"tags\": \"#{fetch(:application)},#{fetch(:stage)},#{release_timestamp},#{action}\", \"data\": \"#{fetch(:local_user)}\"}")
+    req = Net::HTTP::Post.new(uri.path)
+    req.basic_auth(uri.user, uri.password) if uri.user
+    req.body = "{\"what\": \"#{action} #{fetch(:application)} in #{fetch(:stage)}\", \"tags\": \"#{fetch(:application)},#{fetch(:stage)},#{release_timestamp},#{action}\", \"data\": \"#{fetch(:local_user)}\"}"
+
+    Net::HTTP.start(uri.host, uri.port) do |http|
+      http.request(req)
     end
   end
 end
