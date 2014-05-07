@@ -1,24 +1,25 @@
 require 'capistrano'
 require 'net/http'
 require 'uri'
+require 'sshkit'
+require 'sshkit/dsl'
 
 set :local_user, ENV['USER']
 
 class GraphiteInterface
-  def self.events_enabled
+  def self.events_enabled(action)
     if fetch(:graphite_enable_events).to_i == 1
+      # We only post an event if graphite_enable_events was set to 1
+      GraphiteInterface.new.post_event(action)
       return 1
     elsif fetch(:graphite_enable_events).to_i == 0
-      puts "Not sending an event: graphite_enable_events was set to 0."
       return 0
     else
-      warn "Not sending an event: graphite_enable_events was assigned an "\
-            "invalid value."
-      return 0
+      return -1
     end
   end
 
-  def self.post_event(action)
+  def post_event(action)
     uri = URI::parse("#{fetch(:graphite_url)}")
     req = Net::HTTP::Post.new(uri.path)
     req.basic_auth(uri.user, uri.password) if uri.user
@@ -30,21 +31,32 @@ class GraphiteInterface
   end
 end
 
-
 namespace :deploy do
   desc 'notify graphite that a deployment occured'
   task :graphite_deploy do
-    if GraphiteInterface.events_enabled == 1
+    on roles(:all) do |host|
       action = "deploy"
-      GraphiteInterface.post_event(action)
+      if GraphiteInterface.events_enabled(action) == 1
+        info("#{action.capitalize} event posted to graphite.")
+      elsif GraphiteInterface.events_enabled(action) == 0
+        info("No event posted: graphite_enable_events set to 0.")
+      else
+        warn("No event posted: graphite_enable_events set to invalid variable.")
+      end
     end
   end
 
   desc 'notify graphite that a rollback occured'
   task :graphite_rollback do
-    if GraphiteIntervace.events_enabled == 1
-      action = "rollback"
-      GraphiteInterface.post_event(action)
+    on roles(:all) do |host|
+      action = "deploy"
+      if GraphiteInterface.events_enabled(action) == 1
+        info("#{action.capitalize} event posted to graphite.")
+      elsif GraphiteInterface.events_enabled(action) == 0
+        info("No event posted: graphite_enable_events set to 0.")
+      else
+        warn("No event posted: graphite_enable_events set to invalid variable.")
+      end
     end
   end
 
