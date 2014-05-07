@@ -49,7 +49,7 @@ namespace :deploy do
   desc 'notify graphite that a rollback occured'
   task :graphite_rollback do
     on roles(:all) do |host|
-      action = "deploy"
+      action = "rollback"
       if GraphiteInterface.events_enabled(action) == 1
         info("#{action.capitalize} event posted to graphite.")
       elsif GraphiteInterface.events_enabled(action) == 0
