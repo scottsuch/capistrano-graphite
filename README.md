@@ -13,7 +13,7 @@
 This gem works with Capistrano v3.1.0 and above and was based off the work on [this gem](https://github.com/hellvinz/graphite-notify) which works with Capistrano v2.x.
 
 Adding this gem to [Capistrano](https://github.com/capistrano/capistrano) extends functionality by pushing events to graphite upon deployment and rollback.
-Currently events are only pushed after ```deploy:updated``` and ```deploy:reverted```.
+Currently events are only pushed after `deploy:updated` and `deploy:reverted`.
 
 Some information on events can be found in [this article](http://obfuscurity.com/2014/01/Graphite-Tip-A-Better-Way-to-Store-Events).
 
@@ -32,7 +32,7 @@ And then execute:
 
 ## Usage
 ### Setup your application
-Add the following line to your ```Capfile```.
+Add the following line to your `Capfile`.
 
     require "capistrano/graphite"
 
