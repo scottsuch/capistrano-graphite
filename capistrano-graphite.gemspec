@@ -3,29 +3,35 @@ lib = File.expand_path('../lib', __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'capistrano/graphite/version'
 
-Gem::Specification.new do |spec|
-  spec.name          = "capistrano-graphite"
-  spec.version       = Capistrano::Graphite::VERSION
-  spec.authors       = ["scottsuch"]
-  spec.email         = ["sgorsuch@gmail.com"]
-  spec.summary       = %q{A gem for pushing graphite events via capistrano v3
-                          deployment}
-  spec.description   = %q{This gem plugs into the deploy task in capistrano to
-                          help provide visibility into when deployments and
-                          rollbacks occured.}
-  spec.homepage      = "https://github.com/scottsuch/capistrano-graphite"
-  spec.license       = "MIT"
+Gem::Specification.new do |s|
+  s.name          = "capistrano-graphite"
+  s.version       = Capistrano::Graphite::VERSION
+  s.authors       = ["scottsuch"]
+  s.email         = ["sgorsuch@gmail.com"]
+  s.summary       = "A gem for pushing graphite events via capistrano v3 " \
+                    "deployment'"
+  s.description   = "This gem plugs into the deploy task in capistrano to " \
+                    "help provide visibility into when deployments and " \
+                    "rollbacks occured."
+  s.homepage      = "https://github.com/scottsuch/capistrano-graphite"
+  s.license       = "MIT"
 
-  spec.required_ruby_version = '> 1.9'
+  s.required_ruby_version = '> 1.9'
 
-  spec.files         = `git ls-files -z`.split("\x0")
-  spec.executables   = spec.files.grep(%r{^bin/}) { |f| File.basename(f) }
-  spec.test_files    = spec.files.grep(%r{^(test|spec|features)/})
-  spec.require_paths = ["lib"]
+  s.post_install_message = "The config `graphite_enable_events` has changed " \
+                           "to `suppress_graphite_events` and will accept " \
+                           "a true or false. See the README.md at" \
+                           "https://github.com/scottsuch/capistrano-graphite " \
+                           "for details.}"\
 
-  spec.add_dependency             "capistrano", "~> 3.0"
-  spec.add_development_dependency "bundler",    "~> 1.3"
-  spec.add_development_dependency "rake"
-  spec.add_development_dependency "rspec"
-  spec.add_development_dependency "coveralls"
+  s.files         = `git ls-files -z`.split("\x0")
+  s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
+  s.test_files    = s.files.grep(%r{^(test|spec|features)/})
+  s.require_paths = ["lib"]
+
+  s.add_dependency             "capistrano", "~> 3.0"
+  s.add_development_dependency "bundler",    "~> 1.3"
+  s.add_development_dependency "rake"
+  s.add_development_dependency "rspec"
+  s.add_development_dependency "coveralls"
 end

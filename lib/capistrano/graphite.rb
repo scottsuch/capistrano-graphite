@@ -4,21 +4,7 @@ require 'uri'
 require 'sshkit'
 require 'sshkit/dsl'
 
-set :local_user, ENV['USER']
-
 class GraphiteInterface
-  def self.events_enabled(action)
-    if fetch(:graphite_enable_events).to_i == 1
-      # We only post an event if graphite_enable_events was set to 1
-      GraphiteInterface.new.post_event(action)
-      return 1
-    elsif fetch(:graphite_enable_events).to_i == 0
-      return 0
-    else
-      return -1
-    end
-  end
-
   def post_event(action)
     uri = URI::parse("#{fetch(:graphite_url)}")
     req = Net::HTTP::Post.new(uri.path)
@@ -32,41 +18,33 @@ class GraphiteInterface
 end
 
 namespace :deploy do
-  desc 'notify graphite that a deployment occured'
-  task :graphite_deploy do
+  desc 'Post an event to graphite'
+  task :post_graphite, :action do |t, args|
+    action = args[:action]
     on roles(:all) do |host|
-      action = "deploy"
-      if GraphiteInterface.events_enabled(action) == 1
+      if fetch(:suppress_graphite_events).downcase == "true"
+        GraphiteInterface.new.post_event("#{action}")
         info("#{action.capitalize} event posted to graphite.")
-      elsif GraphiteInterface.events_enabled(action) == 0
-        info("No event posted: graphite_enable_events set to 0.")
+      elsif fetch(:suppress_graphite_events).downcase == "false"
+        info("No event posted: `suppress_graphite_events` set to true.")
       else
-        warn("No event posted: graphite_enable_events set to invalid variable.")
-      end
-    end
-  end
-
-  desc 'notify graphite that a rollback occured'
-  task :graphite_rollback do
-    on roles(:all) do |host|
-      action = "rollback"
-      if GraphiteInterface.events_enabled(action) == 1
-        info("#{action.capitalize} event posted to graphite.")
-      elsif GraphiteInterface.events_enabled(action) == 0
-        info("No event posted: graphite_enable_events set to 0.")
-      else
-        warn("No event posted: graphite_enable_events set to invalid variable.")
+        warn("No event posted: `suppress_graphite_events` set incorrectly.")
       end
     end
   end
 
   # Set the order for these tasks
-  after 'deploy:updated', 'deploy:graphite_deploy'
-  after 'deploy:reverted', 'deploy:graphite_rollback'
+  after 'deploy:updated', 'post_graphite_deploy' do
+    Rake::Task['deploy:post_graphite'].invoke 'deploy'
+  end
+  after 'deploy:reverted', 'post_graphite_rollback' do
+    Rake::Task['deploy:post_graphite'].invoke 'rollback'
+  end
 end
 
 namespace :load do
   task :defaults do
-    set :graphite_enable_events, 1
+    set :suppress_graphite_events, "false"
+    set :local_user, ENV['USER']
   end
 end
