@@ -34,6 +34,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
   s.add_development_dependency "webmock"
-  s.add_development_dependency "codeclimate-test-reporter", require: false
-  s.add_development_dependency "coveralls", require: false
+  s.add_development_dependency "coveralls"
 end
