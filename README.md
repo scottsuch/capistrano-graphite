@@ -3,11 +3,14 @@
 [![Build Status](http://img.shields.io/travis/scottsuch/capistrano-graphite.svg)][travis]
 [![Dependency Status](http://img.shields.io/gemnasium/scottsuch/capistrano-graphite.svg)][gemnasium]
 [![Code Climate](http://img.shields.io/codeclimate/github/scottsuch/capistrano-graphite.svg)][codeclimate]
+[![Coverage Status](https://img.shields.io/coveralls/scottsuch/capistrano-graphite.svg)][coveralls]
+
 
 [gem]: https://rubygems.org/gems/capistrano-graphite
 [travis]: http://travis-ci.org/scottsuch/capistrano-graphite
 [gemnasium]: https://gemnasium.com/scottsuch/capistrano-graphite
 [codeclimate]: https://codeclimate.com/github/scottsuch/capistrano-graphite
+[coveralls]: https://coveralls.io/r/scottsuch/capistrano-graphite
 This gem works with Capistrano v3.1.0 and above and was based off the work on [this gem](https://github.com/hellvinz/graphite-notify) which works with Capistrano v2.x.
 
 Adding this gem to [Capistrano](https://github.com/capistrano/capistrano) extends functionality by pushing events to graphite upon deployment and rollback.
