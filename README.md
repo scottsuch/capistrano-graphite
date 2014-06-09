@@ -40,7 +40,7 @@ Add the following line to your `Capfile`.
 ### Configurable options
 Path to your graphite instance. Port and user:password are optional.
 
-    set: :graphite_url, "http://user:password@example.com:8000/events/"
+    set :graphite_url, "http://user:password@example.com:8000/events/"
 
 Disable sending events for a particular stage by setting the following to 0.
 Note that the config `graphite_enable_events` has been deprecated in favor of
