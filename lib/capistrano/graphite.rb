@@ -1,15 +1,21 @@
+# encoding: utf-8
+
 require 'capistrano'
 require 'net/http'
 require 'uri'
 require 'sshkit'
 require 'sshkit/dsl'
 
+# Build the request to post
 class GraphiteInterface
   def post_event(action)
-    uri = URI::parse("#{fetch(:graphite_url)}")
+    uri = URI.parse("#{fetch(:graphite_url)}")
     req = Net::HTTP::Post.new(uri.path)
     req.basic_auth(uri.user, uri.password) if uri.user
-    req.body = "{\"what\": \"#{action} #{fetch(:application)} in #{fetch(:stage)}\", \"tags\": \"#{fetch(:application)},#{fetch(:stage)},#{release_timestamp},#{action}\", \"data\": \"#{fetch(:local_user)}\"}"
+    req.body = "{\"what\": \"#{action} #{fetch(:application)} in " \
+               "#{fetch(:stage)}\", \"tags\": \"#{fetch(:application)}," \
+               "#{fetch(:stage)},#{release_timestamp},#{action}\", \"data\": " \
+               "\"#{fetch(:local_user)}\"}"
 
     Net::HTTP.start(uri.host, uri.port) do |http|
       http.request(req)
@@ -19,16 +25,16 @@ end
 
 namespace :deploy do
   desc 'Post an event to graphite'
-  task :post_graphite, :action do |t, args|
+  task :post_graphite, :action do |args|
     action = args[:action]
-    on roles(:all) do |host|
-      if fetch(:suppress_graphite_events).downcase == "true"
+    on roles(:all) do
+      if fetch(:suppress_graphite_events).downcase == 'true'
         GraphiteInterface.new.post_event("#{action}")
         info("#{action.capitalize} event posted to graphite.")
-      elsif fetch(:suppress_graphite_events).downcase == "false"
-        info("No event posted: `suppress_graphite_events` set to true.")
+      elsif fetch(:suppress_graphite_events).downcase == 'false'
+        info('No event posted: `suppress_graphite_events` set to true.')
       else
-        warn("No event posted: `suppress_graphite_events` set incorrectly.")
+        warn('No event posted: `suppress_graphite_events` set incorrectly.')
       end
     end
   end
@@ -44,7 +50,7 @@ end
 
 namespace :load do
   task :defaults do
-    set :suppress_graphite_events, "false"
+    set :suppress_graphite_events, 'false'
     set :local_user, ENV['USER']
   end
 end
