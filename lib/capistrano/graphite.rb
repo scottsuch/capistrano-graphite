@@ -25,7 +25,7 @@ end
 
 namespace :deploy do
   desc 'Post an event to graphite'
-  task :post_graphite, :action do |args|
+  task :post_graphite, :action do |_, args|
     action = args[:action]
     run_locally do
       if fetch(:suppress_graphite_events).downcase == 'true'
