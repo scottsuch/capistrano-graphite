@@ -18,12 +18,6 @@ Gem::Specification.new do |s|
 
   s.required_ruby_version = '> 1.9'
 
-  s.post_install_message = 'The config `graphite_enable_events` has changed ' \
-                           'to `suppress_graphite_events` and will accept ' \
-                           'a true or false. See the README.md at ' \
-                           'https://github.com/scottsuch/capistrano-graphite ' \
-                           'for details.'\
-
   s.files         = `git ls-files -z`.split("\x0")
   s.executables   = s.files.grep(%r{^bin/}) { |f| File.basename(f) }
   s.test_files    = s.files.grep(%r{^(test|spec|features)/})
