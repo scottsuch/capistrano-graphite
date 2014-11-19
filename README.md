@@ -36,12 +36,11 @@ Path to your graphite instance. Port and user:password are optional.
 
     set :graphite_url, "http://user:password@example.com:8000/events/"
 
-Disable sending events for a particular stage by setting the following to 0.
-Note that the config `graphite_enable_events` has been deprecated in favor of
-the config `suppress_graphite_events` below
+Disable sending events for a particular stage by setting the following:
 
     set :suppress_graphite_events, "true"      # This is set to false by default
 
+Note that the config `graphite_enable_events` was deprecated in version 1.0.0.
 
 ### Test that it's working
 You can run the following on it's own assuming you have configured the graphite url
