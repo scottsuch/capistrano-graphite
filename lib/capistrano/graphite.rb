@@ -41,10 +41,10 @@ namespace :deploy do
 
   # Set the order for these tasks
   after 'deploy:finishing', 'post_graphite_deploy' do
-    Rake::Task['deploy:post_graphite'].invoke 'deploy'
+    invoke('deploy:post_graphite', 'deploy')
   end
   after 'deploy:finishing_rollback', 'post_graphite_rollback' do
-    Rake::Task['deploy:post_graphite'].invoke 'rollback'
+    invoke('deploy:post_graphite', 'rollback')
   end
 end
 
