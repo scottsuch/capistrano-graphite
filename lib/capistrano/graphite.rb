@@ -27,7 +27,7 @@ namespace :deploy do
   desc 'Post an event to graphite'
   task :post_graphite, :action do |args|
     action = args[:action]
-    on roles(:all) do
+    run_locally do
       if fetch(:suppress_graphite_events).downcase == 'true'
         GraphiteInterface.new.post_event("#{action}")
         info("#{action.capitalize} event posted to graphite.")
