@@ -1,4 +1,15 @@
-## 1.0.1
+## 1.0.2 (2014-11-19)
+
+BUG FIXES:
+  
+  - Fix bug introduced by [GH-17].
+  - Fix issue where notification could be sent on failed deploy/rollback.
+
+IMPROVEMENTS:
+
+  - Cleaner Rake syntax.
+
+## 1.0.1 (2014-11-19)
 
 BUG FIXES:
 
