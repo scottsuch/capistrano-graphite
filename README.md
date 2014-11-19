@@ -52,7 +52,7 @@ the config `suppress_graphite_events` below
 ### Test that it's working
 You can run the following on it's own assuming you have configured the graphite url
 
-    $ bundle exec cap <stage> deploy:graphite_deploy
+    $ bundle exec cap <stage> deploy:post_graphite['deploy']
 
 ## Contributing
 
