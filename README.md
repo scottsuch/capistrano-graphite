@@ -5,7 +5,7 @@
 [![Code Climate](http://img.shields.io/codeclimate/github/scottsuch/capistrano-graphite.svg)](https://codeclimate.com/github/scottsuch/capistrano-graphite)
 [![Coverage Status](https://img.shields.io/coveralls/scottsuch/capistrano-graphite.svg)](https://coveralls.io/r/scottsuch/capistrano-graphite?branch=master)
 
-This gem works with Capistrano v3.1.0 and above and was based off the work on [this gem](https://github.com/hellvinz/graphite-notify) which works with Capistrano v2.x.
+This gem works with Capistrano v3.0.0 and above and was based off the work on [this gem](https://github.com/hellvinz/graphite-notify) which works with Capistrano v2.x.
 
 Adding this gem to [Capistrano](https://github.com/capistrano/capistrano) extends functionality by pushing events to graphite upon deployment and rollback.
 Currently events are only pushed after `deploy:updated` and `deploy:reverted`.
