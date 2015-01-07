@@ -50,7 +50,7 @@ end
 
 namespace :load do
   task :defaults do
-    set :suppress_graphite_events, 'false'
-    set :local_user, ENV['USER']
+    set_if_empty :suppress_graphite_events, 'false'
+    set_if_empty :local_user, ENV['USER']
   end
 end
