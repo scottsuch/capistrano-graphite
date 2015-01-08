@@ -1,11 +1,19 @@
 ## 1.0.3 (2015-01-08)
 
+BUG FIXES:
 
+  - Fix bad logic in suppress option. [GH-27]
+
+IMPROVEMENTS
+
+ - Removed gem post install message
+ - Safer setting of config values [GH-24]
+ - Speedier builds via TravisCI Docker infrastructure [GH-25]
 
 ## 1.0.2 (2014-11-19)
 
 BUG FIXES:
-  
+
   - Fix bug introduced by [GH-17].
   - Fix issue where notification could be sent on failed deploy/rollback.
 
