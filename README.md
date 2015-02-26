@@ -42,6 +42,17 @@ Disable sending events for a particular stage by setting the following:
 
 Note that the config `graphite_enable_events` was deprecated in version 1.0.0.
 
+Optionally, override the rest of graphite settings:
+
+    set :graphite_event_user, ENV.fetch('USER', 'unknown')
+    set :graphite_event_data, -> { fetch(:graphite_event_user) }
+    set :graphite_event_tags, -> (action) do
+      [fetch(:application), fetch(:stage), release_timestamp, action].join(',')
+    end
+    set :graphite_event_msg, -> (action) do
+      "#{action} #{fetch(:application)} in #{fetch(:stage)}"
+    end
+
 ### Test that it's working
 You can run the following on it's own assuming you have configured the graphite url
 

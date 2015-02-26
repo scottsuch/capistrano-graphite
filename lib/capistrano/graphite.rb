@@ -12,14 +12,19 @@ class GraphiteInterface
     uri = URI.parse("#{fetch(:graphite_url)}")
     req = Net::HTTP::Post.new(uri.path)
     req.basic_auth(uri.user, uri.password) if uri.user
-    req.body = "{\"what\": \"#{action} #{fetch(:application)} in " \
-               "#{fetch(:stage)}\", \"tags\": \"#{fetch(:application)}," \
-               "#{fetch(:stage)},#{release_timestamp},#{action}\", \"data\": " \
-               "\"#{fetch(:local_user)}\"}"
+    req.body = event(action).to_s
 
     Net::HTTP.start(uri.host, uri.port) do |http|
       http.request(req)
     end
+  end
+
+  def event(action)
+    {
+      'what' => fetch(:graphite_event_msg).call(action),
+      'tags' => fetch(:graphite_event_tags).call(action),
+      'data' => fetch(:graphite_event_data)
+    }
   end
 end
 
@@ -50,7 +55,14 @@ end
 
 namespace :load do
   task :defaults do
-    set_if_empty :suppress_graphite_events, 'false'
-    set_if_empty :local_user, ENV['USER']
+    set :suppress_graphite_events, 'false'
+    set :graphite_event_user, ENV.fetch('USER', 'unknown')
+    set :graphite_event_data, -> { fetch(:graphite_event_user) }
+    set :graphite_event_tags, lambda do |action|
+      [fetch(:application), fetch(:stage), release_timestamp, action].join(',')
+    end
+    set :graphite_event_msg, lambda do |action|
+      "#{action} #{fetch(:application)} in #{fetch(:stage)}"
+    end
   end
 end
