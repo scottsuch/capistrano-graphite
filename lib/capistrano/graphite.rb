@@ -12,7 +12,7 @@ class GraphiteInterface
     uri = URI.parse("#{fetch(:graphite_url)}")
     req = Net::HTTP::Post.new(uri.path)
     req.basic_auth(uri.user, uri.password) if uri.user
-    req.body = event(action).to_s
+    req.body = event(action).to_json
 
     Net::HTTP.start(uri.host, uri.port) do |http|
       http.request(req)
