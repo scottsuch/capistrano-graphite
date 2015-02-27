@@ -58,11 +58,11 @@ namespace :load do
     set :suppress_graphite_events, 'false'
     set :graphite_event_user, ENV.fetch('USER', 'unknown')
     set :graphite_event_data, -> { fetch(:graphite_event_user) }
-    set :graphite_event_tags, lambda do |action|
+    set :graphite_event_tags, (lambda do |action|
       [fetch(:application), fetch(:stage), release_timestamp, action].join(',')
-    end
-    set :graphite_event_msg, lambda do |action|
+    end)
+    set :graphite_event_msg, (lambda do |action|
       "#{action} #{fetch(:application)} in #{fetch(:stage)}"
-    end
+    end)
   end
 end
