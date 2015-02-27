@@ -1,3 +1,7 @@
+## 1.0.5 (2015-02-27)
+ BUG FIXES:
+  - Fixes bug introduced in 1.0.4 [GH-29]
+
 ## 1.0.4 (2015-02-26)
  IMPROVEMENTS
   - Allows for the overriding of graphite settings. [GH-28]
