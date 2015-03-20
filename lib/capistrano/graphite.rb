@@ -14,7 +14,8 @@ class GraphiteInterface
     req.basic_auth(uri.user, uri.password) if uri.user
     req.body = event(action).to_json
 
-    opts = { use_ssl: uri.scheme == 'https', verify_mode: fetch(:graphite_ssl_verify) }
+    opts = { use_ssl: uri.scheme == 'https',
+             verify_mode: fetch(:graphite_ssl_verify) }
     Net::HTTP.start(uri.host, uri.port, opts) do |http|
       http.request(req)
     end
