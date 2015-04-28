@@ -14,8 +14,8 @@ class GraphiteInterface
     req.basic_auth(uri.user, uri.password) if uri.user
     req.body = event(action).to_json
 
-    opts = { use_ssl: uri.scheme == 'https',
-             verify_mode: fetch(:graphite_ssl_verify) }
+    opts = fetch(:graphite_http_options)
+
     Net::HTTP.start(uri.host, uri.port, opts) do |http|
       http.request(req)
     end
@@ -66,6 +66,6 @@ namespace :load do
     set :graphite_event_msg, (lambda do |action|
       "#{action} #{fetch(:application)} in #{fetch(:stage)}"
     end)
-    set :graphite_ssl_verify, OpenSSL::SSL::VERIFY_PEER
+    set :graphite_http_options, verify_mode: OpenSSL::SSL::VERIFY_PEER
   end
 end
