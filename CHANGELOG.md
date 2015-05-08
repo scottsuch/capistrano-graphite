@@ -1,3 +1,7 @@
+## 1.0.6 (2015-05-08)
+ IMPROVEMENTS
+  - Better https/ssl support [GH-30], [GH-31]
+
 ## 1.0.5 (2015-02-27)
  BUG FIXES:
   - Fixes bug introduced in 1.0.4 [GH-29]
