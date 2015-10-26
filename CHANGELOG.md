@@ -1,3 +1,9 @@
+## 1.0.7 (2015-10-26)
+ IMPROVEMENTS
+  - Fix regression in ssl url generation [GH-32]
+  - Remove Travis support for 1.9.3
+  - Remove unnecessary rubocop todo
+
 ## 1.0.6 (2015-05-08)
  IMPROVEMENTS
   - Better https/ssl support [GH-30], [GH-31]
