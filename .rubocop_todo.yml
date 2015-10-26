@@ -9,6 +9,3 @@
 Metrics/AbcSize:
   Max: 20
 
-# Offense count: 2
-Style/RegexpLiteral:
-  MaxSlashes: 0
