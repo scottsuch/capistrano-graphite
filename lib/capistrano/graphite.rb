@@ -36,10 +36,10 @@ namespace :deploy do
   task :post_graphite, :action do |_, args|
     action = args[:action]
     run_locally do
-      if fetch(:suppress_graphite_events).downcase == 'false'
+      if fetch(:suppress_graphite_events).casecmp('false')
         GraphiteInterface.new.post_event("#{action}")
         info("#{action.capitalize} event posted to graphite.")
-      elsif fetch(:suppress_graphite_events).downcase == 'true'
+      elsif fetch(:suppress_graphite_events).casecmp('true')
         info('No event posted: `suppress_graphite_events` is set to true.')
       else
         warn('No event posted: `suppress_graphite_events` is set incorrectly.')
