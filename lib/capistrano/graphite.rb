@@ -5,6 +5,7 @@ require 'net/http'
 require 'uri'
 require 'sshkit'
 require 'sshkit/dsl'
+require 'json'
 
 # Build the request to post
 class GraphiteInterface
