@@ -1,3 +1,11 @@
+## 1.0.8 (2016-02-26)
+BUG FIXES:
+ - Add missing require for json
+
+IMPROVEMENTS:
+ - Cleanup a few new rubocop warnings
+ - Fix Coveralls/TravisCI error
+
 ## 1.0.7 (2015-10-26)
  IMPROVEMENTS
   - Fix regression in ssl url generation [GH-32]
