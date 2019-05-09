@@ -1,8 +1,7 @@
 # Capistrano::Graphite
 [![Gem Version](http://img.shields.io/gem/v/capistrano-graphite.svg)](https://rubygems.org/gems/capistrano-graphite)
 [![Build Status](http://img.shields.io/travis/scottsuch/capistrano-graphite.svg)](http://travis-ci.org/scottsuch/capistrano-graphite)
-[![Dependency Status](http://img.shields.io/gemnasium/scottsuch/capistrano-graphite.svg)](https://gemnasium.com/scottsuch/capistrano-graphite)
-[![Code Climate](http://img.shields.io/codeclimate/github/scottsuch/capistrano-graphite.svg)](https://codeclimate.com/github/scottsuch/capistrano-graphite)
+[![Maintainability](http://img.shields.io/codeclimate/github/scottsuch/capistrano-graphite.svg)](https://codeclimate.com/github/scottsuch/capistrano-graphite/maintainability)
 [![Coverage Status](https://img.shields.io/coveralls/scottsuch/capistrano-graphite.svg)](https://coveralls.io/r/scottsuch/capistrano-graphite?branch=master)
 
 This gem works with Capistrano v3.0.0 and above and was based off the work on [this gem](https://github.com/hellvinz/graphite-notify) which works with Capistrano v2.x.
